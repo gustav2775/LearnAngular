@@ -1,0 +1,21 @@
+<h4>Binding link #textInput, get and delete request,Route </h4>
+
+<div class="user_list">
+  <div class="user_list_wrap">
+    <div loader-directive *ngFor="let user of userState.users ; index as index; trackBy:trackByUser" class="user_card" [id]="user.id">
+
+      <h2 [ngStyle]="{'color':user.color}">{{index}}: {{user.name}}</h2>
+
+      <p>year: {{textInput.value}}</p>
+      <input class="form_input" type="number" #textInput [(ngModel)]="user.year" (value)="user.year">
+
+      <p>pantone_value: {{user.pantone_value}}</p>
+      <input class="form_input" type="text" [(ngModel)]="user.pantone_value" (value)="user.pantone_value">
+
+      <button class='form_input' (click)="deleteUser(user)">Delete user</button>
+
+      <a [routerLink]="['user-details', user.id]" [queryParams]='{year:user.year}' routerLinkActive="router-link-active">Open detail user</a>
+    </div>
+  </div>
+  <button (click)="nextPage()" [disabled]="userState.nextPage" class='button_pagination'>Pagination</button>
+</div>

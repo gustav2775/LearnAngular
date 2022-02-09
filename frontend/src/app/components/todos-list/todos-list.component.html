@@ -1,0 +1,57 @@
+<mat-grid-list cols="2" rowHeight="2:1">
+  <mat-grid-tile class="block-height">
+    <div class="mat-elevation-z8 todos-wrap-list">
+      <table mat-table [dataSource]="dataSource" class="table-width">
+        <ng-container matColumnDef="position">
+          <th mat-header-row *matHeaderCellDef class="collumn-number-width"> No. </th>
+          <td mat-row *matCellDef="let element" class="collumn-number-width"> {{element.id}} </td>
+        </ng-container>
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef class="collumn-title-width"> Заголовок </th>
+          <td mat-row *matCellDef="let element" class="collumn-title-width"> {{element.title}} </td>
+        </ng-container>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="collumn-description-width"> Описание </th>
+          <td mat-row *matCellDef="let element" class="collumn-description-width"> {{element.description}} </td>
+        </ng-container>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="collumn-date-width"> Дата </th>
+          <td mat-row *matCellDef="let element" class="collumn-date-width"> {{element.date | date : 'short': 'ru' }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef class="collumn-button-width"> </th>
+          <td mat-row *matCellDef="let element" class="collumn-button-width">
+            <button (click)="onUpdate(element)" class="btn-status"
+              [ngClass]="element.status ? 'green':'red'"></button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="edit">
+          <th mat-header-cell *matHeaderCellDef class="collumn-button-width"></th>
+          <td mat-row *matCellDef="let element" class="collumn-button-width">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+              (click)="updateElement(element)">
+              <mat-icon>edit</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef class="collumn-button-width"></th>
+          <td mat-row *matCellDef="let element" class="collumn-button-width">
+            <button mat-mini-fab color="primary" aria-label="Example icon button with a delete icon"
+              (click)="deleteElement(element)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="collumn-status-width"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" class="collumn-status-width"></tr>
+      </table>
+      <mat-paginator [pageSize]="10" [pageSizeOptions]="[5,10, 20]" showFirstLastButtons #pa></mat-paginator>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile class="block-height">
+    <app-todo-form [todoRef]="todoRef" (editTodo)="editTodo($event)"></app-todo-form>
+  </mat-grid-tile>
+</mat-grid-list>
+

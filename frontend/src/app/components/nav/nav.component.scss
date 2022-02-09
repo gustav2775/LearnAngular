@@ -1,0 +1,175 @@
+// window background
+$bgWindow: #393939;
+// wrap
+$wrapWidth: 100%;
+$bgWrap: rgba(79, 191, 193, 1);
+$paddingWrap: 20px;
+$bordeWrapPx: 2px;
+@mixin navPosition($position, $positionY, $positionPx) {
+    position: $position;
+    @if ($positionY == "top") {
+        top: $positionPx;
+    } @else {
+        bottom: $positionPx;
+    }
+}
+// nav iten
+$widthNav: 50px;
+$heightNav: $widthNav;
+// indecator
+$borderIndecatorPx: 8px;
+$bgIndecator: linear-gradient(0deg, rgba(79, 191, 193, 1) 3%, rgba(133, 202, 112, 1) 36%, rgba(168, 209, 60, 1) 79%);
+$borderIndecator: $borderIndecatorPx solid $bgWindow;
+$indicatorPositionY: -$borderIndecatorPx;
+// svg
+$svgColor: #59B039;
+$svgColorActive: white;
+// Text
+@mixin testStile() {
+    color: white;
+    font-weight: normal;
+    font-size: 0.85em;
+    letter-spacing: 0.05em;
+}
+// border
+$border: false;
+@mixin border($border, $radius) {
+    @if $border {
+        border: $bordeWrapPx solid $bgWrap;
+    } @else {
+        border: none;
+    }
+    @if $radius {
+        border-radius: $radius;
+    }
+}
+@mixin border-top($border) {
+    @if $border {
+        border-top: $bordeWrapPx solid $bgWrap;
+    } @else {
+        border-top: none;
+    }
+}
+.navigation-container{
+    width: $wrapWidth;
+    background: $bgWindow;
+    height: $heightNav + $borderIndecatorPx + $bordeWrapPx;
+    z-index: 2;
+    @include navPosition(fixed, "bottom", 0);
+    display: flex;
+    align-items: flex-end;
+}
+.navigation{
+    width: $wrapWidth;
+    background: $bgWrap;
+    display: flex;
+    justify-content: center;
+    height: $heightNav;
+    @include border(true, false);
+}
+.navigation-wrap {
+    display: flex;
+    align-items: center;
+    position: relative;
+    width: max-content;
+    height: $heightNav - (2 * $bordeWrapPx);
+    ul {
+        display: flex;
+        padding: $paddingWrap;
+        li {
+            position: relative;
+            list-style: none;
+            width: $widthNav;
+            height: $heightNav;
+            border-radius: 50%;
+            z-index: 1;
+            .icon {
+                position: relative;
+                display: flex;
+                width: 100%;
+                height: 100%;
+                line-height: 75px;
+                font-size: 1.5em;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                fill: $svgColor;
+                stroke: $svgColor;
+            }
+            .text {
+                @include testStile();
+                position: absolute;
+                transition: 0.5s;
+                opacity: 0;
+                transform: translateY(20px);
+                white-space: nowrap;
+            }
+            &.active {
+                .icon {
+                    transform: translateY(-50%);
+                    fill: $svgColorActive;
+                    stroke: $svgColorActive;
+                }
+                .text {
+                    opacity: 1;
+                    transform: translateY(15px);
+                }
+            }
+        }
+        @for $i from 1 through 20 {
+            li:nth-child(#{$i}).active ~ .indicator {
+                transform: translate($widthNav * ($i - 1), $indicatorPositionY);
+            }
+        }
+    }
+    a {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        font-weight: 500;
+    }
+}
+svg {
+    width: 50%;
+}
+.indicator {
+    position: absolute;
+    top: -50%;
+    left: $paddingWrap - calc($borderIndecatorPx / 2);
+    height: $heightNav - $borderIndecatorPx;
+    width: $widthNav - $borderIndecatorPx;
+    background: $bgIndecator;
+    border: $borderIndecator;
+    border-radius: 50%;
+    transform: translateY($indicatorPositionY);
+    transition: 0.5s;
+    &::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        right: -17px;
+        width: 10px;
+        height: 10px;
+        background: $bgWrap;
+        @include border-top($border);
+        border-top-left-radius: $paddingWrap;
+        box-shadow: -1px -5px 0 0 $bgWindow;
+    }
+    &::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: -17px;
+        width: 10px;
+        height: 10px;
+        background: $bgWrap;
+        @include border-top($border);
+        border-top-right-radius: $paddingWrap;
+        box-shadow: 1px -5px 0 0 $bgWindow;
+    }
+}

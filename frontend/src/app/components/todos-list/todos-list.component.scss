@@ -1,0 +1,45 @@
+.table-width {
+    padding: 20px;
+    width: 100%;
+    text-align: left;
+}
+.block-height{
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+.collumn-number-width {
+    width: 10%;
+}
+.collumn-title-width {
+    width: 20%;
+}
+.collumn-description-width {
+    width: 50%;
+}
+.collumn-date-width {
+    width: 10%;
+}
+.collumn-button-width{
+    width: 5%;
+}
+.btn-status{
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+.green{
+    background: greenyellow;
+}
+.red{
+    background: red;
+}
+.btn-delete{
+    background: none;
+    color: wheat;
+    font-weight: 700;
+    border-radius: 50%;
+}
+.todos-wrap-list{
+    width: 100%;
+}

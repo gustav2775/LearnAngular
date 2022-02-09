@@ -1,0 +1,17 @@
+.layout{
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+}
+footer{
+    padding-top: 80px;
+}
+.content {
+    display: flex;
+    margin: 82px auto 32px;
+    padding: 0 16px;
+    flex-direction: column;
+    align-items: center;
+    width: max(768px,1440px);
+}
