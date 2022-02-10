@@ -1,1 +1,11 @@
-/nodemodule/
+node_modules
+
+cache
+*.pack
+**/*.pack
+
+.gitignore
+.vscode
+.vscode/*
+
+/home/nikolay/Projects/LearnAngular/frontend/.angular/cache/angular-webpack/db4f0639da44a638d0cffe673a43c924cde5391c
