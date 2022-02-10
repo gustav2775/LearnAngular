@@ -43,7 +43,6 @@ export class TodosListComponent {
   }
   editTodo(todo: any) {
     const todo_index = this.todos.findIndex(i => Number(i.id) === Number(todo.id));
-    console.log('first', todo_index);
     if (todo_index > -1) {
       this.todos.splice(todo_index, 1, todo);
       this.updateTable();

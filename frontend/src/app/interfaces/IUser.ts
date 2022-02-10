@@ -1,11 +1,9 @@
 export interface IPropsUser {
-    id?: number|undefined;
-    name: string;
-    color?: string;
-    pantone_value?: string;
-    year: number|null
+    id?: number | undefined;
+    fullname: { first: string, last: string }
+    email: string
 }
-export interface IUser extends IPropsUser{
+export interface IUser extends IPropsUser {
     id: number
 }
 export interface IStateUser {

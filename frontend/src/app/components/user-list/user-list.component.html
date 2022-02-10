@@ -1,21 +1,28 @@
-<h4>Binding link #textInput, get and delete request,Route </h4>
-
 <div class="user_list">
   <div class="user_list_wrap">
     <div loader-directive *ngFor="let user of userState.users ; index as index; trackBy:trackByUser" class="user_card" [id]="user.id">
+      <mat-card class="example-card">
+        <mat-card-subtitle>{{user.id}}</mat-card-subtitle>
+        <mat-card-title>{{user.fullname.first}} {{user.fullname.last}}</mat-card-title>
+        <mat-card-content>
+          <p>{{user.email}}</p>
+        </mat-card-content>
 
-      <h2 [ngStyle]="{'color':user.color}">{{index}}: {{user.name}}</h2>
-
-      <p>year: {{textInput.value}}</p>
-      <input class="form_input" type="number" #textInput [(ngModel)]="user.year" (value)="user.year">
-
-      <p>pantone_value: {{user.pantone_value}}</p>
-      <input class="form_input" type="text" [(ngModel)]="user.pantone_value" (value)="user.pantone_value">
-
-      <button class='form_input' (click)="deleteUser(user)">Delete user</button>
-
-      <a [routerLink]="['user-details', user.id]" [queryParams]='{year:user.year}' routerLinkActive="router-link-active">Open detail user</a>
+        <mat-card-actions>
+          <button mat-button (click)="openEditor(user)">Edit</button>
+          <button mat-button (click)="deleteUser(user)">Delete</button>
+          <a class="link-detail"[routerLink]="['user-details', user.id]" [queryParams]='{email:user.email}' routerLinkActive="router-link-active">Open detail user</a>
+        </mat-card-actions>
+        <mat-card-footer>
+   
+        </mat-card-footer>
+      </mat-card>
+     
     </div>
   </div>
-  <button (click)="nextPage()" [disabled]="userState.nextPage" class='button_pagination'>Pagination</button>
+  <div class="pagination-wrap">
+    <button mat-button (click)="nextPage()" [disabled]="!userState.nextPage" class='button_pagination'>Pagination
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </button>
+  </div>
 </div>

@@ -6,9 +6,9 @@
       <input ngModel name="title" matInput [value]="todoRef ? todoRef.title: '' ">
     </mat-form-field>
 
-    <mat-form-field appearance="fill">
-      <mat-label>Описание</mat-label>
-      <input ngModel name="description" matInput [value]="todoRef? todoRef.description: ''">
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Описание заметки</mat-label>
+      <textarea ngModel name="description" matInput [value]="todoRef? todoRef.description: ''"></textarea>
     </mat-form-field>
 
   </div>

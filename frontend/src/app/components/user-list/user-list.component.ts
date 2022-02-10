@@ -1,3 +1,6 @@
+import { ModalUserEditComponent } from './../modals/modal-user-edit/modal-user-edit.component';
+import { FormEditUserComponent } from './../form-edit-user/form-edit-user.component';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from './../../core/servises/myUsers.service';
 import { IStateUser,IUser } from './../../interfaces/IUser';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -8,33 +11,28 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  form: { valid: boolean, name: string, year: number | null } = {
-    valid: true,
-    name: '',
-    year: null
-  }
   userState: IStateUser = {
     users: [],
     nextPage: false,
   }
-  constructor(@Inject('myUsers') private myUsers: UsersService) {
+  constructor(@Inject('myUsers') private myUsers: UsersService,public dialog: MatDialog) {
     this.userState = this.myUsers.getUsers;
   }
   ngOnInit() {
-    this.myUsers.init();
+    this.userState.users.length === 0 && this.myUsers.init();
   }
   trackByUser(index: number, user: IUser): number {
     return user.id
   }
   nextPage = () => {
     this.myUsers.nextPage
-  }
-  addUser(): void {
-    this.myUsers.add({ name: this.form.name, year: this.form.year })
     this.userState = this.myUsers.getUsers;
   }
   deleteUser(user: IUser): void {
     this.myUsers.delete(user)
     this.userState = this.myUsers.getUsers;
+  }
+  openEditor(user:IUser) {
+    const dialogRef = this.dialog.open(ModalUserEditComponent,{panelClass: 'modal-wrap',data:user});
   }
 }

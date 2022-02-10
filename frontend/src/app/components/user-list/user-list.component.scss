@@ -1,0 +1,18 @@
+.link-detail{
+    color:white;
+    text-decoration: none;
+    font-weight: 500;
+}
+.pagination-wrap{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.user_list{
+    width: 100%;
+}
+.user_list_wrap{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+}

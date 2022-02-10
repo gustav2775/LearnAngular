@@ -17,7 +17,7 @@ export class BaseApi {
             .catch(err => console.log(err.response))
     }
     post = async (api: string, body?: {}): Promise<any> => {
-        await fetch(api, {
+        return await fetch(api, {
             method: 'POST',
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
@@ -28,8 +28,20 @@ export class BaseApi {
             .then(result => result)
             .catch(err => console.log(err.response))
     }
+    put = async (api: string, body?: {}): Promise<any> => {
+        return await fetch(api, {
+            method: 'PUT',
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            },
+            body: JSON.stringify(body)
+        })
+            .then(data => data.json())
+            .then(result => result)
+            .catch(err => console.log(err.response))
+    }
     delete = async (api: string, body?: {}) => {
-        await fetch(api, {
+        return await fetch(api, {
             method: 'DELETE',
             headers: {
                 "Content-type": "application/json; charset=UTF-8"
