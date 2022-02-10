@@ -34,22 +34,22 @@ export class NavComponent {
         </svg>`
     },
     {
-      id: 2,
-      link: '/examples',
-      name: "examples"
-    },
-    {
-      id:8,
+      id:2,
       link: '/todos',
       name: "Todos"
     },
     {
-      id:9,
+      id: 3,
+      link: '/examples',
+      name: "examples"
+    },
+    {
+      id:4,
       link: '/users',
       name: "User list"
     },
     {
-      id:10,
+      id:5,
       link: '/product',
       name: "Products list"
     }

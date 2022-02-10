@@ -1,0 +1,18 @@
+
+  <mat-accordion class="example-headers-align">
+    <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <mat-expansion-panel-header class="panel-header">
+        <mat-icon>account_circle</mat-icon>
+        <span>Login</span>
+      </mat-expansion-panel-header>
+      <login-form></login-form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+      <mat-expansion-panel-header class="panel-header">
+        <mat-icon class="">plus_one</mat-icon>
+        <span>New user</span>
+      </mat-expansion-panel-header>
+      <new-user-form></new-user-form>
+    </mat-expansion-panel>
+  </mat-accordion>

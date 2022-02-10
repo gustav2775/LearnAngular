@@ -1,3 +1,6 @@
+import { ModalUserEditComponent } from './../modals/modal-user-edit/modal-user-edit.component';
+import { FormEditUserComponent } from './../form-edit-user/form-edit-user.component';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from './../../core/servises/myUsers.service';
 import { IStateUser,IUser } from './../../interfaces/IUser';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -12,11 +15,11 @@ export class UserListComponent implements OnInit {
     users: [],
     nextPage: false,
   }
-  constructor(@Inject('myUsers') private myUsers: UsersService) {
+  constructor(@Inject('myUsers') private myUsers: UsersService,public dialog: MatDialog) {
     this.userState = this.myUsers.getUsers;
   }
   ngOnInit() {
-    this.myUsers.init();
+    this.userState.users.length === 0 && this.myUsers.init();
   }
   trackByUser(index: number, user: IUser): number {
     return user.id
@@ -28,5 +31,8 @@ export class UserListComponent implements OnInit {
   deleteUser(user: IUser): void {
     this.myUsers.delete(user)
     this.userState = this.myUsers.getUsers;
+  }
+  openEditor(user:IUser) {
+    const dialogRef = this.dialog.open(ModalUserEditComponent,{panelClass: 'modal-wrap',data:user});
   }
 }

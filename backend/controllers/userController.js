@@ -51,7 +51,7 @@ class UserController {
         const users = await userService.get();
         const user = users.find((el) => Number(el.id) === Number(req.body.id) & el.role !== 'admin');
         if (user) {
-            Object.entries(req.body).forEach(([key, value]) => {
+            Object.entries(req.body.values).forEach(([key, value]) => {
                 user[key] = value;
             })
             const user_index = users.indexOf(user);

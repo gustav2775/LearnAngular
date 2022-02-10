@@ -1,3 +1,4 @@
+import { async } from '@angular/core/testing';
 import { environment } from '../../../environments/environment';
 import { BaseApi } from './myBaseApi.service';
 import { Inject, Injectable } from '@angular/core';
@@ -47,9 +48,24 @@ export class UsersService {
         return await this.api.post(ENV_USER_URL, props)
             .then(data => {
                 if (data) {
-                    const user = data as IUser
+                    const user = data.result as IUser
                     this.state.users = [...this.state.users, user];
                 }
+            })
+            .catch(err => new Error(err));
+    }
+    delete = async (user: IUser) => {
+        await this.api.delete(ENV_USER_URL, { id: user.id })
+            .then(() => {
+                const index = this.state.users.indexOf(user);
+                this.state.users.splice(index, 1);
+            });
+    }
+    update = async (user: IUser, values: any) => {
+        await this.api.put(ENV_LOGIN_URL, { id: user.id, values: values })
+            .then((data) => {
+                const index = this.state.users.indexOf(user);
+                this.state.users.splice(index, 1, data.result);
             })
             .catch(err => new Error(err));
     }
@@ -60,9 +76,7 @@ export class UsersService {
             })
             .catch(err => new Error(err));
     }
-    delete = async (user: IUser) => {
-        const index = this.state.users.indexOf(user);
-        this.state.users.splice(index, 1);
-        await this.api.delete(ENV_USER_URL, { id: user.id });
+    logout = (): void => {
+        this.inited_user = undefined;
     }
 }

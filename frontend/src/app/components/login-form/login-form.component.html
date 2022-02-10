@@ -1,0 +1,22 @@
+<div class="form-container">
+  <form class="form" novalidate [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <p>ReactiveFormModule</p>
+    <p>FormGroup</p>
+    <div class="input-wrap">
+      <mat-form-field appearance="fill">
+        <mat-label>login</mat-label>
+        <input type="text" matInput formControlName="login">
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Пароль</mat-label>
+        <input type="password" matInput formControlName=password>
+      </mat-form-field>
+    </div>
+    <button mat-button [disabled]="!loginForm.valid"> Авторизация </button>
+  </form>
+  <p>form.value: {{loginForm.value | json }}</p>
+  <p>form.status: {{loginForm.status | json }}</p>
+  <p>form.login.valid: {{loginForm.get('login')?.valid| json }}</p>
+  <p>form.login.errors: {{loginForm.get('login')?.errors| json }}</p>
+</div>
