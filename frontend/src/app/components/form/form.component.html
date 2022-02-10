@@ -1,5 +1,5 @@
 <div class="forms-wrap">
-  <div class="form-container">
+  <div class="form-container" [hidden]="auth">
     <form class="form" novalidate [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <p>ReactiveFormModule</p>
       <p>FormGroup</p>

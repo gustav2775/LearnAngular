@@ -1,5 +1,5 @@
 import { UsersService } from '../../core/servises/myUsers.service';
-import { Component,SimpleChanges,Inject } from '@angular/core';
+import { Component, SimpleChanges, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 
 function validLogin(c: AbstractControl) {
@@ -22,7 +22,7 @@ function validLogin(c: AbstractControl) {
 })
 export class FormComponent {
   public loginForm: FormGroup;
-
+  public auth: boolean = false;
   public regFormFirstname = 'Николай';
   public regFormLastname = 'Давыдов';
   public regFormLogin = "gustav2775";
@@ -33,7 +33,7 @@ export class FormComponent {
     valuesPrev: []
   };
 
-  constructor( @Inject('myUsers') private apiUser:UsersService ,public fb: FormBuilder) {
+  constructor(@Inject('myUsers') private apiUser: UsersService, public fb: FormBuilder) {
     this.loginForm = this.fb.group({
       login: ['', validLogin],
       password: ['', Validators.minLength(5)],
@@ -62,6 +62,6 @@ export class FormComponent {
 
   onLogin() {
     this.apiUser.login(this.loginForm.value)
+      .then(() => { this.auth = this.apiUser.is_auth })
   }
 }
-function validateLogin() { }

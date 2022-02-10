@@ -8,7 +8,7 @@ class UserService {
                 if (err) {
                     return res(JSON.stringify({ text: err }));
                 } else {
-                    return res(data);
+                    return res(JSON.parse(data));
                 }
             })
         })

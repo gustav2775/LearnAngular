@@ -2,8 +2,6 @@ import { environment } from '../../../environments/environment';
 import { BaseApi } from './myBaseApi.service';
 import { Inject, Injectable } from '@angular/core';
 import { IUser, IStateUser, IPropsUser } from '../../interfaces/IUser';
-
-const ENV_OUTER_URL: string = 'https://reqres.in/api/products/';
 const ENV_LOGIN_URL: string = environment.ENV.localhost + '/api/login/';
 const ENV_USER_URL: string = environment.ENV.localhost + '/api/user/';
 
@@ -15,8 +13,11 @@ export class UsersService {
         users: [],
         nextPage: false,
     }
-    private inited_user: any = {}
+    private inited_user?: IUser
 
+    get is_auth(): boolean {
+        return this.inited_user ? true : false
+    }
     get getUsers(): IStateUser {
         return this.state;
     }
@@ -31,41 +32,37 @@ export class UsersService {
         if (user) {
             return user;
         } else {
-            return await this.api.get(ENV_OUTER_URL, { id: id })
-                .then(data => data.data);
+            return await this.api.get(ENV_USER_URL, { id: id })
+                .then(data => data.result);
         }
     }
     init = (): void => {
-        this.api.get(ENV_OUTER_URL, { per_page: this.page_size, page: this.pagination_number })
+        this.api.get(ENV_USER_URL, { page_size: this.page_size, page: this.pagination_number })
             .then(data => {
-                this.state.users = [...this.state.users, ...data.data];
-                if (data.total_pages <= this.pagination_number) {
-                    this.state.nextPage = true;
-                } else {
-                    this.state.nextPage = false;
-                }
+                this.state.users = [...this.state.users, ...data.results];
+                this.state.nextPage = data.next_page;
             })
     }
-    add = (props: IPropsUser) => {
-        this.api.post(ENV_USER_URL, props)
+    add = async (props: IPropsUser) => {
+        return await this.api.post(ENV_USER_URL, props)
             .then(data => {
                 if (data) {
                     const user = data as IUser
-                    this.state.users.push(user)
+                    this.state.users = [...this.state.users, user];
                 }
             })
             .catch(err => new Error(err));
     }
-    login = (user: any) => {
-        this.api.post(ENV_LOGIN_URL, { login: user.login, password: user.password })
+    login = async (user: any) => {
+        await this.api.post(ENV_LOGIN_URL, { login: user.login, password: user.password })
             .then((data) => {
-                this.inited_user = data
+                return this.inited_user = data
             })
             .catch(err => new Error(err));
     }
-    delete = (user: IUser): void => {
+    delete = async (user: IUser) => {
         const index = this.state.users.indexOf(user);
         this.state.users.splice(index, 1);
-        this.api.delete(ENV_USER_URL, { id: user.id });
+        await this.api.delete(ENV_USER_URL, { id: user.id });
     }
 }

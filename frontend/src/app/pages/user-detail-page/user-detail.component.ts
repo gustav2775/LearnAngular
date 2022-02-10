@@ -9,19 +9,17 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserDetailPage implements OnInit {
   id?: number;
-  year?: number;
+  email?: number;
   userName?:string;
-  color?:string
   constructor(private route: ActivatedRoute,@Inject('myUsers') private myUsers:UsersService) {
     route.params.subscribe(params => this.id = Number(params['userId']));
-    route.queryParams.subscribe(params => this.year = params['year']);
+    route.queryParams.subscribe(params => this.email = params['email']);
   }
   ngOnInit() {
     if(this.id){
       this.myUsers.getById(this.id)
         .then(data=>{
-          this.userName = data.name;
-          this.color = data.color;
+          this.userName = data.fullname.last;
         })
     }
   }

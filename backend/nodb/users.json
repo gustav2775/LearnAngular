@@ -1,1 +1,107 @@
-[{"id":0,"login":"root","password":"12345","role":"admin"},{"id":1,"login":"gustav2775","password":"qwerty","fullname":{"first":"Николай","last":"Давыдов"},"email":"","role":"user"},{"id":2,"login":"gustav27752","password":"svdsdv","fullname":{"first":"Николай","last":"Давыдов"},"email":"sdvsdv","role":"user"},{"id":3,"login":"gustav2775f","password":"wefwefwefw","fullname":{"first":"Николай","last":"Давыдов"},"email":"wefwef","role":"user"},{"id":4,"login":"gustav2775fdfewewf","password":"wefwefwefw","fullname":{"first":"Николай","last":"Давыдов"},"email":"wefwefwfe","role":"user"},{"id":5,"login":"gustav2775214","password":"ewr234r","fullname":{"first":"Николай","last":"Давыдов"},"email":"1234","role":"user"},{"id":6,"login":"gustav2775214ewr","password":"ewr234r","fullname":{"first":"Николай","last":"Давыдов"},"email":"1234234","role":"user"}]
+[
+    {
+        "id": 0,
+        "login": "root",
+        "password": "12345",
+        "role": "admin"
+    },
+    {
+        "id": 1,
+        "login": "gustav2775",
+        "password": "qwerty",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "",
+        "role": "user"
+    },
+    {
+        "id": 2,
+        "login": "gustav27752",
+        "password": "svdsdv",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "sdvsdv",
+        "role": "user"
+    },
+    {
+        "id": 3,
+        "login": "gustav2775f",
+        "password": "wefwefwefw",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "wefwef",
+        "role": "user"
+    },
+    {
+        "id": 4,
+        "login": "gustav2775fdfewewf",
+        "password": "wefwefwefw",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "wefwefwfe",
+        "role": "user"
+    },
+    {
+        "id": 5,
+        "login": "gustav2775214",
+        "password": "ewr234r",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "1234",
+        "role": "user"
+    },
+    {
+        "id": 6,
+        "login": "gustav2775214ewr",
+        "password": "ewr234r",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "1234234",
+        "role": "user"
+    },
+    {
+        "id": 7,
+        "login": "gustav2775fdfewewf",
+        "password": "wefwefwefw",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "wefwefwfe",
+        "role": "user"
+    },
+    {
+        "id": 8,
+        "login": "gustav2775214",
+        "password": "ewr234r",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "1234",
+        "role": "user"
+    },
+    {
+        "id": 9,
+        "login": "gustav2775214ewr",
+        "password": "ewr234r",
+        "fullname": {
+            "first": "Николай",
+            "last": "Давыдов"
+        },
+        "email": "1234234",
+        "role": "user"
+    }
+]

@@ -8,11 +8,6 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./user-list.component.scss']
 })
 export class UserListComponent implements OnInit {
-  form: { valid: boolean, name: string, year: number | null } = {
-    valid: true,
-    name: '',
-    year: null
-  }
   userState: IStateUser = {
     users: [],
     nextPage: false,
@@ -28,9 +23,6 @@ export class UserListComponent implements OnInit {
   }
   nextPage = () => {
     this.myUsers.nextPage
-  }
-  addUser(): void {
-    this.myUsers.add({ name: this.form.name, year: this.form.year })
     this.userState = this.myUsers.getUsers;
   }
   deleteUser(user: IUser): void {
