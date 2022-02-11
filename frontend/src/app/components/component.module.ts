@@ -1,17 +1,17 @@
-import { FormEditUserComponent } from './form-edit-user/form-edit-user.component';
+import { FormEditUserComponent } from './for_user/form-edit-user/form-edit-user.component';
 import { ModalsComponents } from './modals/index';
 import { ModalSettingComponent } from './modals/modal-setting/modal-setting.component';
 import { ModalAuthComponent } from './modals/modal-auth/modal-auth.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { ProductCardComponent } from './product-card/product-card.component';
-import { ProductListComponent } from './product-list/product-list.component';
-import { TodoFormComponent } from './todo-form/todo-form.component';
-import { TodosListComponent } from './todos-list/todos-list.component';
-import { FormNewUserComponent } from './form-new-user/form-new-user.component';
+import { LoginFormComponent } from './for_user/login-form/login-form.component';
+import { ProductCardComponent } from './for_product/product-card/product-card.component';
+import { ProductListComponent } from './for_product/product-list/product-list.component';
+import { TodoFormComponent } from './for_todo/todo-form/todo-form.component';
+import { TodosListComponent } from './for_todo/todos-list/todos-list.component';
+import { FormNewUserComponent } from './for_user/form-new-user/form-new-user.component';
 import { NavComponent } from './nav/nav.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { UserListComponent } from './user-list/user-list.component';
-import { ExamplesComponents } from './examples/index';
+import { UserListComponent } from './for_user/user-list/user-list.component';
+import { ExamplesComponents } from './for_examples/index';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';

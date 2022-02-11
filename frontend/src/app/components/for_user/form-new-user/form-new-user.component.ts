@@ -1,6 +1,6 @@
-import { ModalAuthComponent } from './../modals/modal-auth/modal-auth.component';
+import { ModalAuthComponent } from '../../modals/modal-auth/modal-auth.component';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UsersService } from '../../core/servises/myUsers.service';
+import { UsersService } from '../../../core/servises/myUsers.service';
 import { Component, SimpleChanges, Inject } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 

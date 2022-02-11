@@ -1,5 +1,5 @@
-import { ITodo, IValuesNewTodo } from '../../interfaces/ITodo';
-import { MyTodosService } from '../../core/servises/myTodos.service';
+import { ITodo, IValuesNewTodo } from '../../../interfaces/ITodo';
+import { MyTodosService } from '../../../core/servises/myTodos.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit, Inject, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 

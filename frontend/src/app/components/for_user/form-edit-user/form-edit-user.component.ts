@@ -1,8 +1,8 @@
-import { ModalUserEditComponent } from './../modals/modal-user-edit/modal-user-edit.component';
-import { IUser } from './../../interfaces/IUser';
+import { ModalUserEditComponent } from '../../modals/modal-user-edit/modal-user-edit.component';
+import { IUser } from '../../../interfaces/IUser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators } from '@angular/forms';
-import { UsersService } from './../../core/servises/myUsers.service';
+import { UsersService } from '../../../core/servises/myUsers.service';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({

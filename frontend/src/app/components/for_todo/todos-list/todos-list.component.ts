@@ -1,5 +1,5 @@
-import { ITodo } from '../../interfaces/ITodo';
-import { MyTodosService } from '../../core/servises/myTodos.service';
+import { ITodo } from '../../../interfaces/ITodo';
+import { MyTodosService } from '../../../core/servises/myTodos.service';
 import { AfterViewInit, Component, ViewChild, Inject, SimpleChanges, EventEmitter } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTable, MatTableDataSource } from '@angular/material/table';

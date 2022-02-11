@@ -1,6 +1,6 @@
-import { ModalAuthComponent } from './../modals/modal-auth/modal-auth.component';
+import { ModalAuthComponent } from '../../modals/modal-auth/modal-auth.component';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { UsersService } from './../../core/servises/myUsers.service';
+import { UsersService } from '../../../core/servises/myUsers.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
