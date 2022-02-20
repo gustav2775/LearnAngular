@@ -18,7 +18,7 @@ export class MyTodosService {
   getAll = ():Observable<any> => {
     return this.http.get(this.url_path).pipe(retry(2))
   }
-  add(values: IValuesNewTodo) {
+  add = (values: IValuesNewTodo) => {
     return this.http.post(this.url_path, values).pipe(retry(2))
   }
   delete = (element: ITodo) => {

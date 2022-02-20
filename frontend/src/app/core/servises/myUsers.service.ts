@@ -1,9 +1,8 @@
-import { async } from '@angular/core/testing';
 import { environment } from '../../../environments/environment';
 import { BaseApi } from './myBaseApi.service';
 import { Inject, Injectable } from '@angular/core';
 import { IUser, IStateUser, IPropsUser } from '../../interfaces/IUser';
-const ENV_LOGIN_URL: string = environment.ENV.localhost + '/api/login/';
+
 const ENV_USER_URL: string = environment.ENV.localhost + '/api/user/';
 
 @Injectable({ providedIn: 'root' })
@@ -13,11 +12,6 @@ export class UsersService {
     private state: IStateUser = {
         users: [],
         nextPage: false,
-    }
-    private inited_user?: IUser
-
-    get is_auth(): boolean {
-        return this.inited_user ? true : false
     }
     get getUsers(): IStateUser {
         return this.state;
@@ -62,21 +56,11 @@ export class UsersService {
             });
     }
     update = async (user: IUser, values: any) => {
-        await this.api.put(ENV_LOGIN_URL, { id: user.id, values: values })
+        await this.api.put(ENV_USER_URL, { id: user.id, values: values })
             .then((data) => {
                 const index = this.state.users.indexOf(user);
                 this.state.users.splice(index, 1, data.result);
             })
             .catch(err => new Error(err));
-    }
-    login = async (user: any) => {
-        await this.api.post(ENV_LOGIN_URL, { login: user.login, password: user.password })
-            .then((data) => {
-                return this.inited_user = data
-            })
-            .catch(err => new Error(err));
-    }
-    logout = (): void => {
-        this.inited_user = undefined;
     }
 }

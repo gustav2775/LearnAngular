@@ -1,8 +1,12 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Inject } from '@angular/core';
+import { LoadingService } from './myLoading.service';
 
 @Injectable({ providedIn: 'root' })
 export class BaseApi {
+    constructor(@Inject('loadingService') private LoadingService:LoadingService){}
+
     get = async (api: string, body: {} = {}): Promise<any> => {
+        this.LoadingService.setStatusLoading = 'start'
         const getQueryString = this.getQueryArray(body);
         const url = `${api}?${getQueryString}`;
         return await fetch(url, {
@@ -13,10 +17,14 @@ export class BaseApi {
 
         })
             .then(data => data.json())
-            .then(result => result)
+            .then(result => {
+                this.LoadingService.setStatusLoading = 'stop'
+                return result
+            })
             .catch(err => console.log(err.response))
     }
     post = async (api: string, body?: {}): Promise<any> => {
+        this.LoadingService.setStatusLoading = 'start'
         return await fetch(api, {
             method: 'POST',
             headers: {
@@ -25,10 +33,14 @@ export class BaseApi {
             body: JSON.stringify(body)
         })
             .then(data => data.json())
-            .then(result => result)
+            .then(result => {
+                this.LoadingService.setStatusLoading = 'stop'
+                return result
+            })
             .catch(err => console.log(err.response))
     }
     put = async (api: string, body?: {}): Promise<any> => {
+        this.LoadingService.setStatusLoading = 'start'
         return await fetch(api, {
             method: 'PUT',
             headers: {
@@ -37,10 +49,14 @@ export class BaseApi {
             body: JSON.stringify(body)
         })
             .then(data => data.json())
-            .then(result => result)
+            .then(result => {
+                this.LoadingService.setStatusLoading = 'stop'
+                return result
+            })
             .catch(err => console.log(err.response))
     }
     delete = async (api: string, body?: {}) => {
+        this.LoadingService.setStatusLoading = 'start'
         return await fetch(api, {
             method: 'DELETE',
             headers: {
@@ -49,7 +65,10 @@ export class BaseApi {
             body: JSON.stringify(body)
         })
             .then(data => data.json())
-            .then(result => result.data)
+            .then(result => {
+                this.LoadingService.setStatusLoading = 'stop'
+                return result.data
+            })
             .catch(err => console.log(err.response))
     }
     getQueryArray = (obj: {}): string => {

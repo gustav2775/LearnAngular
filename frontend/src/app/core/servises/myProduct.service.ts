@@ -1,26 +1,41 @@
-import { async } from '@angular/core/testing';
+import { BehaviorSubject, catchError, debounceTime, map, retry } from 'rxjs';
+import { LoadingService } from './myLoading.service';
 import { environment } from '../../../environments/environment.prod';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { ajax } from 'rxjs/ajax';
+
+interface IProduct {
+  id:number,
+  price:number,
+  name:string
+}
 
 @Injectable({
   providedIn: 'root'
 })
-
+//не работает debounceTime, не получается BehaviorSubject задать обощение 
 export class MyProductService {
-  private products: any = []
-  private url_path = '/api/product'
-  get getProducts() {
-    return this.products;
+  public products: BehaviorSubject <[]> = new BehaviorSubject([]);
+  private urlPath = '/api/product';
+  
+  public productsObserver = ajax(environment.ENV.localhost + this.urlPath).pipe(
+    map((res) => {
+      if(res.status){
+        this.LoadingService.setStatusLoading = 'stop'
+        return res.response
+      }
+    }),
+    retry(2),
+    debounceTime(2000),
+    catchError(() => this.LoadingService.setStatusLoading = 'stop')
+  )
+
+  constructor(@Inject('loadingService') private LoadingService: LoadingService) { }
+
+  reqGet = async () => {
+    this.LoadingService.setStatusLoading = 'start'
+    this.productsObserver.subscribe((res:any) => {
+      this.products.next(res.results)
+    })
   }
-
-  constructor(private http: HttpClient) { }
-
-  reqGet = async() => {
-    await this.http.get(environment.ENV.localhost + this.url_path)
-      .subscribe((res:any):any => {
-        this.products =  res.results;
-      })
-  }
-
 }

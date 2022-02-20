@@ -7,5 +7,9 @@ import { NgModule } from '@angular/core';
         ValidateLoginDirective,
         MyLoaderDirective,
     ],
+    exports:[
+        ValidateLoginDirective,
+        MyLoaderDirective,
+    ]
 })
 export class DirectiveModule { }

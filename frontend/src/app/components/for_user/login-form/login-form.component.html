@@ -14,6 +14,7 @@
       </mat-form-field>
     </div>
     <button mat-button [disabled]="!loginForm.valid"> Авторизация </button>
+    <p class="err-message">{{errMessage}}</p>
   </form>
   <p>form.value: {{loginForm.value | json }}</p>
   <p>form.status: {{loginForm.status | json }}</p>

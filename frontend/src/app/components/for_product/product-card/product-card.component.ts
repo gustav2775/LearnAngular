@@ -6,9 +6,9 @@ import { Component, ContentChildren, OnInit, Input } from '@angular/core';
   styleUrls: ['./product-card.component.scss']
 })
 export class ProductCardComponent implements OnInit {
-  @Input() product: {name:string, price:number|null} = {
+  @Input() product: {name:string, price:number} = {
     name: '',
-    price: null
+    price: 0
   }
   @ContentChildren(ProductCardComponent)
   childrenArray?: ProductCardComponent

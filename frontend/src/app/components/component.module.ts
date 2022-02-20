@@ -1,6 +1,8 @@
+import { PipeModule } from './../core/pipes/pipes.module';
+import { TransformInSvg } from './../core/pipes/transform-in-svg.pipe';
+import { TransformFormatPricePipe } from './../core/pipes/transformFormatPrice.pipe';
 import { FormEditUserComponent } from './for_user/form-edit-user/form-edit-user.component';
 import { ModalsComponents } from './modals/index';
-import { ModalSettingComponent } from './modals/modal-setting/modal-setting.component';
 import { ModalAuthComponent } from './modals/modal-auth/modal-auth.component';
 import { LoginFormComponent } from './for_user/login-form/login-form.component';
 import { ProductCardComponent } from './for_product/product-card/product-card.component';
@@ -29,8 +31,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialogModule } from '@angular/material/dialog';
-import {MatCardModule} from '@angular/material/card';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { NavLoaderComponent } from './nav-loader/nav-loader.component';
+import { registerLocaleData } from '@angular/common';
+import locateRu from '@angular/common/locales/ru';
+
+registerLocaleData(locateRu)
 
 @NgModule({
   declarations: [
@@ -45,7 +52,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ProductCardComponent,
     ToolbarComponent,
     LoginFormComponent,
-    FormEditUserComponent
+    FormEditUserComponent,
+    NavLoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +72,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     MatExpansionModule,
     MatDialogModule,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    PipeModule
   ],
   exports: [
     ...ExamplesComponents,
@@ -79,7 +88,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     ToolbarComponent,
     LoginFormComponent,
     ModalAuthComponent,
-    FormEditUserComponent
+    FormEditUserComponent,
+    NavLoaderComponent
   ]
 })
 export class ComponentModule { }

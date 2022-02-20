@@ -47,7 +47,7 @@ export class TodosListComponent {
       this.todos.splice(todo_index, 1, todo);
       this.updateTable();
     }else{
-      this.todos.push(todo);
+      this.todos.unshift(todo);
       this.updateTable();
     }
   }

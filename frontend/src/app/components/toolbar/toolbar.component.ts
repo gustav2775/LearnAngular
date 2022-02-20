@@ -1,7 +1,8 @@
+import { LoginService } from './../../core/servises/myLogin.service';
 import { ModalSettingComponent } from './../modals/modal-setting/modal-setting.component';
 import { UsersService } from './../../core/servises/myUsers.service';
 import { ModalAuthComponent } from '../modals/modal-auth/modal-auth.component';
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatMenuTrigger } from '@angular/material/menu';
 
@@ -14,24 +15,24 @@ export class ToolbarComponent {
   isAuth?:boolean;
   @ViewChild('menuTrigger') menuTrigger!: MatMenuTrigger;
 
-  constructor(public dialog: MatDialog, @Inject('myUsers') private myUser:UsersService) { 
-    this.isAuth = this.myUser.is_auth;
+  constructor(public dialog: MatDialog, @Inject('loginService') private loginService:LoginService) { 
+    this.isAuth = this.loginService.is_auth;
   }
   ngOnInit() {
   }
   openLogin() {
     const dialogRef = this.dialog.open(ModalAuthComponent,{panelClass: 'modal-auth'});
     dialogRef.afterClosed().subscribe(result => {
-      this.isAuth = this.myUser.is_auth;
+      console.log('result', result)
+      this.isAuth = this.loginService.is_auth;
     });
   }
   openSetting(){
     const dialogRef = this.dialog.open(ModalSettingComponent,{panelClass: 'modal-setting'});
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    dialogRef.afterClosed().subscribe();
   }
   onLogout(){
-    this.myUser.logout();
+    this.loginService.logout();
     this.isAuth = false;
   }
 }

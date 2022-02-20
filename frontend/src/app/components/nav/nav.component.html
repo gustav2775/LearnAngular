@@ -3,8 +3,12 @@
     <div class="navigation-wrap">
       <ul>
         <li *ngFor="let nav of navList; trackBy:trackByNav" [ngClass]="nav.active ? 'active':''">
-          <a [routerLink]="[ nav.link ]" (mouseenter)="isEnterNav(nav)" (mouseleave)="isLeaveNav(nav)" (click)="isActiveNav(nav)">
-            <span [innerHTML]="nav.icon ? getSVG(nav.icon) : defaultIcon()" class="icon"></span>
+          <a [routerLink]="[ nav.link ]" 
+            (mouseenter)="isEnterNav(nav)" 
+            (mouseleave)="isLeaveNav(nav)"
+            (click)="isActiveNav(nav)"
+            (keydown.Enter)="isEnterNav(nav)">
+            <span [innerHTML]="(nav.icon ? nav.icon : defaultIcon ) | transformsvg" class="icon"></span>
             <span class="text">{{nav.name}}</span>
           </a>
         </li>
@@ -12,4 +16,5 @@
       </ul>
     </div>
   </div>
+  <nav-loader></nav-loader>
 </nav>

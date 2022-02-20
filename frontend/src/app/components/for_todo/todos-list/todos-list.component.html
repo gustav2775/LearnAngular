@@ -4,7 +4,7 @@
       <table mat-table [dataSource]="dataSource" class="table-width">
         <ng-container matColumnDef="position">
           <th mat-header-row *matHeaderCellDef class="collumn-number-width"> No. </th>
-          <td mat-row *matCellDef="let element" class="collumn-number-width"> {{element.id}} </td>
+          <td mat-row *matCellDef="let index = index " class="collumn-number-width"> {{index}} </td>
         </ng-container>
         <ng-container matColumnDef="title">
           <th mat-header-cell *matHeaderCellDef class="collumn-title-width"> Заголовок </th>
@@ -16,7 +16,7 @@
         </ng-container>
         <ng-container matColumnDef="date">
           <th mat-header-cell *matHeaderCellDef class="collumn-date-width"> Дата </th>
-          <td mat-row *matCellDef="let element" class="collumn-date-width"> {{element.date | date : 'short': 'ru' }}
+          <td mat-row *matCellDef="let element" class="collumn-date-width"> {{element.date | date : 'dd  MMM yy': '' :'ru' }}
           </td>
         </ng-container>
         <ng-container matColumnDef="status">

@@ -34,7 +34,7 @@ export class FormEditUserComponent{
   }
   onEdit() {
     console.log(this.editForm.value);
-    this.apiUser.login(this.editForm.value)
+    this.apiUser.update(this.userRef,this.editForm.value)
       .then(() => { 
         this.closeModal() 
       })

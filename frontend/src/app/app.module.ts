@@ -1,3 +1,5 @@
+import { PipeModule } from './core/pipes/pipes.module';
+import { TransformFormatPricePipe } from './core/pipes/transformFormatPrice.pipe';
 import { ServiceModule } from './core/servises/service.module';
 import { PageModule } from './pages/pages.module';
 import { ComponentModule } from './components/component.module';
@@ -23,7 +25,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     
     ComponentModule,
     PageModule,
-    ServiceModule
+    ServiceModule,
   ],
   bootstrap: [
     AppComponent

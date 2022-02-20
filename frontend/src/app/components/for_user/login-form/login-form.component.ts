@@ -1,3 +1,4 @@
+import { LoginService } from './../../../core/servises/myLogin.service';
 import { ModalAuthComponent } from '../../modals/modal-auth/modal-auth.component';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
 import { UsersService } from '../../../core/servises/myUsers.service';
@@ -25,9 +26,9 @@ function validLogin(c: AbstractControl) {
 export class LoginFormComponent implements OnInit {
   public loginForm: FormGroup;
   public auth: boolean = false;
-
+  public errMessage: string = ''
   constructor(
-    @Inject('myUsers') private apiUser: UsersService,
+    @Inject('loginService') private loginService: LoginService,
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<ModalAuthComponent>
   ) {
@@ -50,8 +51,15 @@ export class LoginFormComponent implements OnInit {
   ngOnInit() {
   }
   onLogin() {
-    this.apiUser.login(this.loginForm.value)
-      .then(() => { this.closeModal() })
+    this.errMessage = ''
+    this.loginService.login(this.loginForm.value)
+      .then((res) => {
+        if (res) {
+          this.errMessage = res;
+        } else {
+          this.closeModal()
+        }
+      })
   }
   closeModal(): void {
     this.dialogRef.close();
