@@ -1,4 +1,4 @@
-import { UsersService } from '../../core/servises/myUsers.service';
+import { UsersService } from '../../servises/myUsers.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

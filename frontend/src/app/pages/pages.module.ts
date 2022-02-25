@@ -1,4 +1,4 @@
-import { ComponentModule } from './../components/component.module';
+import { ComponentModule } from '../components/component.module';
 import { RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { ExamplesPage } from './examples-page/examples-page.component';

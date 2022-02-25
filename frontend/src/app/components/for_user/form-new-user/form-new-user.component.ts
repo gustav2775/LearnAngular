@@ -1,8 +1,8 @@
 import { ModalAuthComponent } from '../../modals/modal-auth/modal-auth.component';
 import { MatDialogRef } from '@angular/material/dialog';
-import { UsersService } from '../../../core/servises/myUsers.service';
+import { UsersService } from '../../../servises/myUsers.service';
 import { Component, SimpleChanges, Inject } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, NgForm } from '@angular/forms';
 
 function validLogin(c: AbstractControl) {
   let regexp = /^[a-z\d]+$/i
@@ -34,11 +34,6 @@ export class FormNewUserComponent {
 
   constructor(@Inject('myUsers') private apiUser: UsersService, public dialogRef: MatDialogRef<ModalAuthComponent>) {
   }
-
-  ngOnChanges(changes: SimpleChanges): void {
-    console.log('changes', changes);
-  }
-
   onRegistred(regForm: NgForm): void {
     this.apiUser.add(regForm.value)
       .then(() => this.closeModal())

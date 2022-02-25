@@ -1,6 +1,6 @@
 <form class="form" novalidate [formGroup]="editForm" (ngSubmit)="onEdit()">
   <div class="input-wrap">
-    <div ngModelGroup="fullname">
+    <div formGroupName="fullname">
       <mat-form-field appearance="fill">
         <mat-label>Имя</mat-label>
         <input type="text" matInput formControlName="first">

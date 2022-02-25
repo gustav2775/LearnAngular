@@ -1,4 +1,4 @@
-import { LoadingService } from './../../core/servises/myLoading.service';
+import { LoadingService } from '../../servises/myLoading.service';
 import { Component, OnInit, Inject } from '@angular/core';
 
 @Component({

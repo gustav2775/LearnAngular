@@ -1,6 +1,6 @@
-import { PipeModule } from './core/pipes/pipes.module';
-import { TransformFormatPricePipe } from './core/pipes/transformFormatPrice.pipe';
-import { ServiceModule } from './core/servises/service.module';
+import { PipeModule } from './pipes/pipes.module';
+import { TransformFormatPricePipe } from './pipes/transformFormatPrice.pipe';
+import { ServiceModule } from './servises/service.module';
 import { PageModule } from './pages/pages.module';
 import { ComponentModule } from './components/component.module';
 import { HttpClientModule } from '@angular/common/http';

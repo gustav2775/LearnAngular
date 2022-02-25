@@ -1,8 +1,9 @@
+import { Subscription } from 'rxjs';
 import { ITodo } from '../../../interfaces/ITodo';
-import { MyTodosService } from '../../../core/servises/myTodos.service';
-import { AfterViewInit, Component, ViewChild, Inject, SimpleChanges, EventEmitter } from '@angular/core';
+import { MyTodosService } from '../../../servises/myTodos.service';
+import { Component, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-todos-list',
@@ -11,10 +12,11 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 })
 
 export class TodosListComponent {
+  private subscription: Subscription = new Subscription();
   displayedColumns: string[] = ['position', 'title', 'description', 'date', 'status', 'edit', 'delete'];
   dataSource: MatTableDataSource<ITodo> | any;
   todos: ITodo[] = [];
-  todoRef: ITodo | undefined;
+  todoRef?: ITodo;
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
   constructor(@Inject('MyTodosService') private myTodos: MyTodosService) { }
   ngOnInit() {
@@ -30,13 +32,15 @@ export class TodosListComponent {
     })
   }
   deleteElement(element: ITodo) {
-    this.myTodos.delete(element).subscribe((res: any): any => {
-      if (res.massege === 'Заметка удалена') {
-        const todo_index = this.todos.indexOf(element);
-        this.todos.splice(todo_index, 1);
-        this.updateTable();
-      }
-    });
+    this.subscription.add(
+      this.myTodos.delete(element).subscribe((res: any): any => {
+        if (res.massege === 'Заметка удалена') {
+          const todo_index = this.todos.indexOf(element);
+          this.todos.splice(todo_index, 1);
+          this.updateTable();
+        }
+      })
+    )
   }
   updateElement(todo: ITodo) {
     this.todoRef = todo;
@@ -46,21 +50,23 @@ export class TodosListComponent {
     if (todo_index > -1) {
       this.todos.splice(todo_index, 1, todo);
       this.updateTable();
-    }else{
+    } else {
       this.todos.unshift(todo);
       this.updateTable();
     }
   }
-  onUpdate(todo:ITodo){
-    todo.status=!todo.status;
-    this.myTodos.update(todo, {status: todo.status}).subscribe((res: any): any => {
-      console.log(res);
-      this.updateTable
-    });
-    
-   
+  onUpdate(todo: ITodo) {
+    todo.status = !todo.status;
+    this.subscription.add(
+      this.myTodos.update(todo, { status: todo.status }).subscribe((res: any): any => {
+        this.updateTable
+      })
+    )
   }
   updateTable() {
     this.dataSource._updateChangeSubscription(this.todos);
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }

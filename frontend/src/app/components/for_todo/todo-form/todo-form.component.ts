@@ -1,7 +1,8 @@
+import { Subscription } from 'rxjs';
 import { ITodo, IValuesNewTodo } from '../../../interfaces/ITodo';
-import { MyTodosService } from '../../../core/servises/myTodos.service';
+import { MyTodosService } from '../../../servises/myTodos.service';
 import { NgForm } from '@angular/forms';
-import { Component, OnInit, Inject, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
+import { Component, Inject, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-todo-form',
@@ -9,25 +10,40 @@ import { Component, OnInit, Inject, Output, EventEmitter, Input, SimpleChanges }
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-  @Input() todoRef?: ITodo
+  private subscription!: Subscription;
+  @Input() 
+  todoRef?:ITodo = {
+    id: null,
+    title: '',
+    description: '',
+    status:false
+  }
   @Output() public editTodo = new EventEmitter();
   constructor(@Inject('MyTodosService') private myTodos: MyTodosService) { }
-  ngOnChanges(changes: SimpleChanges): void {}
+  ngOnChanges(changes: SimpleChanges): void { }
   onSubmit(form: NgForm) {
     const values = form.value.ngModelGroup as IValuesNewTodo;
-    this.myTodos.add(values).subscribe((res: any): any => {
+    this.subscription = this.myTodos.add(values).subscribe((res: any): any => {
       form.reset();
-      this.editTodo.emit(res.result) 
+      this.editTodo.emit(res.result)
     });
   }
   onUpdate(form: NgForm) {
     const values = form.value.ngModelGroup as IValuesNewTodo;
     if (this.todoRef) {
       this.myTodos.update(this.todoRef, values).subscribe((res: any): any => {
-        this.todoRef = undefined;
+        this.todoRef = {
+          id: null,
+          title: '',
+          description: '',
+          status:false
+        }
         form.reset();
-        this.editTodo.emit(res.result) 
+        this.editTodo.emit(res.result)
       });
     }
+  }
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe()
   }
 }

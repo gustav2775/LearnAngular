@@ -1,9 +1,8 @@
-import { LoginService } from './../../../core/servises/myLogin.service';
+import { LoginService } from '../../../servises/myLogin.service';
 import { ModalAuthComponent } from '../../modals/modal-auth/modal-auth.component';
 import { FormBuilder, Validators, FormGroup, AbstractControl } from '@angular/forms';
-import { UsersService } from '../../../core/servises/myUsers.service';
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 function validLogin(c: AbstractControl) {
   let regexp = /^[a-z\d]+$/i
@@ -23,7 +22,7 @@ function validLogin(c: AbstractControl) {
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
-export class LoginFormComponent implements OnInit {
+export class LoginFormComponent {
   public loginForm: FormGroup;
   public auth: boolean = false;
   public errMessage: string = ''
@@ -47,8 +46,6 @@ export class LoginFormComponent implements OnInit {
     this.loginForm.patchValue({
       login: 'gustav2775',
     })
-  }
-  ngOnInit() {
   }
   onLogin() {
     this.errMessage = ''

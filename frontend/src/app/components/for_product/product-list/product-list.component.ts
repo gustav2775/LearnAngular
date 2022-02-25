@@ -1,4 +1,4 @@
-import { Component, ContentChildren, OnInit, ViewChildren, Input, SimpleChanges } from '@angular/core';
+import { Component, ContentChildren, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({
@@ -15,10 +15,6 @@ export class ProductListComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
   }
 
 }

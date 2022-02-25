@@ -1,9 +1,8 @@
-import { ModalUserEditComponent } from '../../modals/modal-user-edit/modal-user-edit.component';
 import { IUser } from '../../../interfaces/IUser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { FormBuilder, Validators } from '@angular/forms';
-import { UsersService } from '../../../core/servises/myUsers.service';
-import { Component, OnInit, Inject } from '@angular/core';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { UsersService } from '../../../servises/myUsers.service';
+import { Component, Inject, } from '@angular/core';
 
 @Component({
   selector: 'app-form-edit-user',
@@ -11,7 +10,7 @@ import { Component, OnInit, Inject } from '@angular/core';
   styleUrls: ['./form-edit-user.component.scss']
 })
 export class FormEditUserComponent{
-  editForm: any
+  editForm: FormGroup;
   constructor(
     @Inject('myUsers') private apiUser: UsersService,
     public fb: FormBuilder,
@@ -19,21 +18,14 @@ export class FormEditUserComponent{
     @Inject(MAT_DIALOG_DATA) public userRef: IUser
   ) {
     this.editForm = this.fb.group({
-      fullname:{
-        first: userRef.fullname.first,
-        last: userRef.fullname.last,
-      },
+      fullname: this.fb.group({
+        first: [userRef.fullname.first],
+        last: [userRef.fullname.last],
+        }),
       email: [userRef.email, Validators.minLength(6)],
     })
-    console.log('first', this.editForm )
-    // this.editForm.setValue({
-    //   first: userRef.fullname.first,
-    //   last: userRef.fullname.last,
-    //   email: userRef.email
-    // })
   }
   onEdit() {
-    console.log(this.editForm.value);
     this.apiUser.update(this.userRef,this.editForm.value)
       .then(() => { 
         this.closeModal() 

@@ -3,12 +3,12 @@
   <div ngModelGroup="ngModelGroup" class="input-wrap-todo">
     <mat-form-field appearance="fill">
       <mat-label>Заголовок</mat-label>
-      <input ngModel name="title" matInput [value]="todoRef ? todoRef.title: '' ">
+      <input name="title" matInput [(ngModel)]="todoRef && todoRef.title">
     </mat-form-field>
 
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Описание заметки</mat-label>
-      <textarea ngModel name="description" matInput [value]="todoRef? todoRef.description: ''"></textarea>
+      <textarea matInput [(ngModel)]="todoRef && todoRef.description" [ngModelOptions]="{standalone: true}"></textarea>
     </mat-form-field>
 
   </div>

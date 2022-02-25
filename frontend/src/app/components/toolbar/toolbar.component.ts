@@ -1,6 +1,5 @@
-import { LoginService } from './../../core/servises/myLogin.service';
-import { ModalSettingComponent } from './../modals/modal-setting/modal-setting.component';
-import { UsersService } from './../../core/servises/myUsers.service';
+import { LoginService } from '../../servises/myLogin.service';
+import { ModalSettingComponent } from '../modals/modal-setting/modal-setting.component';
 import { ModalAuthComponent } from '../modals/modal-auth/modal-auth.component';
 import { Component, Inject, ViewChild, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';

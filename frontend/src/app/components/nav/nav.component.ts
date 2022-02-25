@@ -1,6 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
-import { Location } from '@angular/common';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
 interface INav {

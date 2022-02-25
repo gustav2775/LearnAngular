@@ -1,5 +1,5 @@
-import { environment } from './../../../environments/environment.prod';
-import { IUser } from './../../interfaces/IUser';
+import { environment } from '../../environments/environment.prod';
+import { IUser } from '../interfaces/IUser';
 import { BaseApi } from './myBaseApi.service';
 import { Injectable, Inject } from '@angular/core';
 

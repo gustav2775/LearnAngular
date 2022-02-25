@@ -1,7 +1,6 @@
 import { ModalUserEditComponent } from '../../modals/modal-user-edit/modal-user-edit.component';
-import { FormEditUserComponent } from '../form-edit-user/form-edit-user.component';
 import { MatDialog } from '@angular/material/dialog';
-import { UsersService } from '../../../core/servises/myUsers.service';
+import { UsersService } from '../../../servises/myUsers.service';
 import { IStateUser,IUser } from '../../../interfaces/IUser';
 import { Component, OnInit, Inject } from '@angular/core';
 

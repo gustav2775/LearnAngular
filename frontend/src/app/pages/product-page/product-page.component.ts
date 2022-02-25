@@ -1,6 +1,5 @@
-import { LoadingService } from './../../core/servises/myLoading.service';
-import { MyProductService } from '../../core/servises/myProduct.service';
-import { HttpClient } from '@angular/common/http';
+import { LoadingService } from '../../servises/myLoading.service';
+import { MyProductService } from '../../servises/myProduct.service';
 import { Component, OnInit, Inject, SimpleChanges } from '@angular/core';
 import { from, Observable } from 'rxjs';
 

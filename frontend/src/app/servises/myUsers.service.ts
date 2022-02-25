@@ -1,7 +1,7 @@
-import { environment } from '../../../environments/environment';
+import { environment } from '../../environments/environment';
 import { BaseApi } from './myBaseApi.service';
 import { Inject, Injectable } from '@angular/core';
-import { IUser, IStateUser, IPropsUser } from '../../interfaces/IUser';
+import { IUser, IStateUser, IPropsUser } from '../interfaces/IUser';
 
 const ENV_USER_URL: string = environment.ENV.localhost + '/api/user/';
 

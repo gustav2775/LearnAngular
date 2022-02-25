@@ -1,4 +1,4 @@
-import { LoadingState } from './core/directive/loader/my-loader.directive';
+import { LoadingState } from './directive/loader/my-loader.directive';
 import { Component } from '@angular/core';
 
 @Component({

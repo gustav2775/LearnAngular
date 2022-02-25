@@ -1,6 +1,4 @@
-import { PipeModule } from './../core/pipes/pipes.module';
-import { TransformInSvg } from './../core/pipes/transform-in-svg.pipe';
-import { TransformFormatPricePipe } from './../core/pipes/transformFormatPrice.pipe';
+import { PipeModule } from '../pipes/pipes.module';
 import { FormEditUserComponent } from './for_user/form-edit-user/form-edit-user.component';
 import { ModalsComponents } from './modals/index';
 import { ModalAuthComponent } from './modals/modal-auth/modal-auth.component';

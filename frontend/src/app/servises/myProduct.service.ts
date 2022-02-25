@@ -1,6 +1,6 @@
 import { BehaviorSubject, catchError, debounceTime, map, retry } from 'rxjs';
 import { LoadingService } from './myLoading.service';
-import { environment } from '../../../environments/environment.prod';
+import { environment } from '../../environments/environment.prod';
 import { Inject, Injectable } from '@angular/core';
 import { ajax } from 'rxjs/ajax';
 
