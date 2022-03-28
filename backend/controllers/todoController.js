@@ -12,6 +12,7 @@ class TodoController {
                 res.send(400, { err: 'Заметка не найдена' });
             }
         } else {
+            todos.sort((x, y) => Number(x.status) - Number(y.status));
             res.send({ results: todos });
         }
     }

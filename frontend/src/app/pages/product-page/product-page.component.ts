@@ -1,6 +1,7 @@
-import { MyProductService } from '../../core/servises/myProduct.service';
-import { HttpClient } from '@angular/common/http';
+import { LoadingService } from '../../servises/myLoading.service';
+import { MyProductService } from '../../servises/myProduct.service';
 import { Component, OnInit, Inject, SimpleChanges } from '@angular/core';
+import { from, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-product-page',
@@ -8,23 +9,18 @@ import { Component, OnInit, Inject, SimpleChanges } from '@angular/core';
   styleUrls: ['./product-page.component.scss']
 })
 export class ProductPage implements OnInit {
-  products_list: [] = []
+  public products_list: Observable<any>
 
-  constructor(@Inject('MyProduct') private myProduct: MyProductService) { }
-
+  constructor(@Inject('MyProduct') private myProduct: MyProductService, @Inject('loadingService') private LoadingService: LoadingService) {
+    this.products_list = myProduct.products
+  }
   ngOnInit() {
     this.responseProducts();
-    this.getProducts()
   }
-  responseProducts =  async () => {
+  responseProducts = async () => {
     await this.myProduct.reqGet()
   }
-  getProducts () {
-    this.products_list = this.myProduct.getProducts
-  }
-  ngOnChanges(changes: SimpleChanges): void {
-    //Called before any other lifecycle hook. Use it to inject dependencies, but avoid any serious work here.
-    //Add '${implements OnChanges}' to the class.
-    console.log('1111111', 1111111);
+  getProducts() {
+    this.myProduct.reqGet()
   }
 }

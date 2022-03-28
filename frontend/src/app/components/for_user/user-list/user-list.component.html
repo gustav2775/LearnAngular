@@ -1,0 +1,26 @@
+<div class="user_list">
+  <div class="user_list_wrap">
+    <div loader-directive *ngFor="let user of userState.users ; index as index; trackBy:trackByUser" class="user_card" [id]="user.id">
+      <mat-card class="example-card">
+        <mat-card-subtitle>{{user.id}}</mat-card-subtitle>
+        <mat-card-title>{{user.fullname.first}} {{user.fullname.last}}</mat-card-title>
+        <mat-card-content>
+          <p>{{user.email}}</p>
+        </mat-card-content>
+
+        <mat-card-actions>
+          <button mat-button (click)="openEditor(user)">Edit</button>
+          <button mat-button (click)="deleteUser(user)">Delete</button>
+          <a class="link-detail"[routerLink]="['user-details', user.id]" [queryParams]='{email:user.email}' routerLinkActive="router-link-active">Open detail user</a>
+        </mat-card-actions>
+        <mat-card-footer>
+   
+        </mat-card-footer>
+      </mat-card>
+     
+    </div>
+  </div>
+  <div class="pagination-wrap">
+    <button mat-button (click)="nextPage()" [disabled]="!userState.nextPage" class='button_pagination'>Pagination</button>
+  </div>
+</div>

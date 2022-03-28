@@ -4,7 +4,7 @@ class UserService {
     constructor() { }
     get = () => {
         return new Promise((res, rej) => {
-            fs.readFile("./nodb/users.json", "utf-8", (err, data) => {
+            fs.readFile("./dataBase/nodb/users.json", "utf-8", (err, data) => {
                 if (err) {
                     return res(JSON.stringify({ text: err }));
                 } else {
@@ -15,7 +15,7 @@ class UserService {
     }
     post = (data) => {
         return new Promise((res, rej) => {
-            fs.writeFile("./nodb/users.json", JSON.stringify(data), "utf-8", (err, data) => {
+            fs.writeFile("./dataBase/nodb/users.json", JSON.stringify(data), "utf-8", (err, data) => {
                 if (err) {
                     return res(false);
                 } else {

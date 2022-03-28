@@ -56,8 +56,7 @@ $border: false;
     height: $heightNav + $borderIndecatorPx + $bordeWrapPx;
     z-index: 2;
     @include navPosition(fixed, "bottom", 0);
-    display: flex;
-    align-items: flex-end;
+    display: block;
 }
 .navigation{
     width: $wrapWidth;
@@ -132,6 +131,9 @@ $border: false;
         height: 100%;
         text-align: center;
         font-weight: 500;
+        &:focus-visible{
+            outline: none;
+        }
     }
 }
 svg {
