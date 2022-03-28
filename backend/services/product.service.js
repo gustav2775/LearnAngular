@@ -4,7 +4,7 @@ class ProductService {
     constructor() { }
     get = () => {
         return new Promise((res, rej) => {
-            fs.readFile('./nodb/products.json', 'utf-8', (err, data) => {
+            fs.readFile('./dataBase/nodb/products.json', 'utf-8', (err, data) => {
                 if (err) {
                     return res(JSON.stringify({ text: err }));
                 } else {

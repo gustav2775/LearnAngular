@@ -20,18 +20,25 @@ export class LifeCycle implements
     console.log('changes', changes);
   }
   ngOnInit() {
+    console.log('ngOnInit');
   }
   ngDoCheck() {
+    console.log('ngDoCheck');
   }
   // ContentChild нужен для доступа к элементам в ng-content внутри дочерних компонентов.
   ngAfterContentInit() {
+    console.log('ngAfterContentInit');
   }
   ngAfterContentChecked() {
+    console.log('ngAfterContentChecked');
   }
   ngAfterViewInit() {
+    console.log('ngAfterViewInit');
   }
   ngAfterViewChecked() {
+    console.log('ngAfterViewChecked');
   }
   ngOnDestroy() {
+    console.log('ngOnDestroy');
   }
 }

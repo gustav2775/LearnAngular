@@ -1,8 +1,7 @@
 # TestAngular
 
 # Убить порт
-1.lsof -i tcp:3000
-2.kill -9 id
+1.kill -9 $(lsof -t -i:3000)
 
 # запустить backend
 1.cd backend/

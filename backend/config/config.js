@@ -1,8 +1,15 @@
-const port = process.env.PORT || 3000;
-const host = 'localhost';
-const cors = '*';
+const serverConfig ={
+    port: process.env.PORT || 3000,
+    host: 'localhost',
+    cors: '*'
+} 
+const noSQL = '';
+const mySqlConfig = {
+    host:'http://localhost:3306',
+    login:'gustav',
+    password:'12345'
+}
 module.exports = {
-    port,
-    host,
-    cors
+    serverConfig,
+    mySqlConfig
 }

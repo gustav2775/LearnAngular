@@ -6,7 +6,7 @@ import { Component, Input, Output, OnInit, EventEmitter, HostListener, HostBindi
   styleUrls: ['./decoration.component.scss']
 })
 
-export class Decoration implements OnInit {
+export class Decoration {
   @Input()
   text: string | undefined;
 
@@ -19,19 +19,12 @@ export class Decoration implements OnInit {
   @HostBinding()
 
   @HostListener('window:click',['$event.target'])
-  hideModal(event:Event){
-    
-  }
-  constructor() {
-    console.log(`Доступ в конструкторе  к this.text`, this.text);
-  }
+  hideModal(event:Event){}
+
+  constructor() {}
 
   onEmitText(event: Event): any {
     const input = event.target as HTMLInputElement;
     this.emitText.emit(input.value);
-  }
-
-  ngOnInit() {
-    console.log(`Доступ в ngOnInit  к this.text`, this.text);
   }
 }

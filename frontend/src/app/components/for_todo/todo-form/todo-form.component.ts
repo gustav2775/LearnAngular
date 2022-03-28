@@ -10,7 +10,6 @@ import { Component, Inject, Output, EventEmitter, Input, SimpleChanges } from '@
   styleUrls: ['./todo-form.component.scss']
 })
 export class TodoFormComponent {
-  private subscription!: Subscription;
   @Input() 
   todoRef?:ITodo = {
     id: null,
@@ -20,13 +19,15 @@ export class TodoFormComponent {
   }
   @Output() public editTodo = new EventEmitter();
   constructor(@Inject('MyTodosService') private myTodos: MyTodosService) { }
-  ngOnChanges(changes: SimpleChanges): void { }
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes', changes);
+  }
   onSubmit(form: NgForm) {
     const values = form.value.ngModelGroup as IValuesNewTodo;
-    this.subscription = this.myTodos.add(values).subscribe((res: any): any => {
+    this.myTodos.add(values).subscribe((res: any): any => {
       form.reset();
       this.editTodo.emit(res.result)
-    });
+    })
   }
   onUpdate(form: NgForm) {
     const values = form.value.ngModelGroup as IValuesNewTodo;
@@ -42,8 +43,5 @@ export class TodoFormComponent {
         this.editTodo.emit(res.result)
       });
     }
-  }
-  ngOnDestroy(): void {
-    this.subscription.unsubscribe()
   }
 }
