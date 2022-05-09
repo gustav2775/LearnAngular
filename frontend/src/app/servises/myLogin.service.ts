@@ -1,5 +1,5 @@
 import { environment } from '../../environments/environment.prod';
-import { IUser } from '../interfaces/IUser';
+import { IUser } from '../models/IUser';
 import { BaseApi } from './myBaseApi.service';
 import { Injectable, Inject } from '@angular/core';
 
@@ -14,7 +14,7 @@ export class LoginService {
   get is_auth(): boolean {
     return this.inited_user ? true : false
   }
-  constructor(@Inject('myBaseApi') private api: BaseApi) { }
+  constructor(private api: BaseApi) { }
   login = async (user: any):Promise<any> => {
     return await this.api.post(ENV_LOGIN_URL, { login: user.login, password: user.password })
       .then((data) => {

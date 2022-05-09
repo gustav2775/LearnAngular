@@ -1,5 +1,8 @@
-import { Subscription } from 'rxjs';
-import { ITodo } from '../../../interfaces/ITodo';
+import { loadTodosAction } from './../../store/todos.actions';
+import { allTodosSelector } from './../../store/todos.selector';
+import { Store } from '@ngrx/store';
+import { Subscription, Observable, filter, map } from 'rxjs';
+import { ITodo } from '../../../models/ITodo';
 import { MyTodosService } from '../../../servises/myTodos.service';
 import { Component, ViewChild, Inject } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -15,13 +18,27 @@ export class TodosListComponent {
   private subscription: Subscription = new Subscription();
   displayedColumns: string[] = ['position', 'title', 'description', 'date', 'status', 'edit', 'delete'];
   dataSource: MatTableDataSource<ITodo> | any;
-  todos: ITodo[] = [];
+
+  todos!: [ITodo];
+  todos$!: Observable <ITodo[]> 
+
   todoRef?: ITodo;
+
   @ViewChild(MatPaginator) paginator: MatPaginator | undefined;
-  constructor(@Inject('MyTodosService') private myTodos: MyTodosService) { }
+  constructor(
+    private myTodos: MyTodosService,
+    private store: Store) { }
+
   ngOnInit() {
     this.getTodos();
+    this.store.dispatch(loadTodosAction())
+    this.store.select(allTodosSelector)
+      .pipe(
+        map(todos => console.log(todos))
+      )
+      .subscribe(arr => console.log('todos arr', arr))
   }
+
   getTodos() {
     this.myTodos.getAll().subscribe((res: any): any => {
       this.todos = res.results;

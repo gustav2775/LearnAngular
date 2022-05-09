@@ -1,3 +1,4 @@
+import { MyProductService } from './../../../servises/myProduct.service';
 import { Component, ContentChildren, OnInit, Input, SimpleChanges } from '@angular/core';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
@@ -7,14 +8,21 @@ import { ProductCardComponent } from '../product-card/product-card.component';
   styleUrls: ['./product-list.component.scss']
 })
 export class ProductListComponent implements OnInit {
-  @Input() products_list: [] = []
+  public products_list
 
   @ContentChildren(ProductCardComponent)
   childrenArray?: ProductCardComponent
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor(private myProduct: MyProductService) {
+    this.products_list = myProduct.products
   }
-
+  ngOnInit() {
+    this.responseProducts();
+  }
+  responseProducts = async () => {
+    await this.myProduct.reqGet()
+  }
+  getProducts() {
+    this.myProduct.reqGet()
+  }
 }

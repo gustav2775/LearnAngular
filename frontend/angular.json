@@ -120,6 +120,7 @@
   },
   "defaultProject": "test_project_angular",
   "cli": {
+    "analytics": false,
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

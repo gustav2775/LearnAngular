@@ -1,5 +1,4 @@
-import { PipeModule } from './pipes/pipes.module';
-import { TransformFormatPricePipe } from './pipes/transformFormatPrice.pipe';
+import { AppStoreModule } from './components/store/store.module';
 import { ServiceModule } from './servises/service.module';
 import { PageModule } from './pages/pages.module';
 import { ComponentModule } from './components/component.module';
@@ -10,6 +9,11 @@ import { AppRoutingModule } from './routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -22,10 +26,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    
+    AppStoreModule,
     ComponentModule,
     PageModule,
     ServiceModule,
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
   ],
   bootstrap: [
     AppComponent

@@ -21,6 +21,4 @@ function validLogin(c: AbstractControl) {
   ]
 })
 
-export class ValidateLoginDirective {
-  constructor() { }
-}
+export class ValidateLoginDirective {}

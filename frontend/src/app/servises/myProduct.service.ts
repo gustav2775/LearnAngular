@@ -1,4 +1,4 @@
-import { BehaviorSubject, catchError, debounceTime, map, retry } from 'rxjs';
+import { BehaviorSubject, catchError, debounceTime, map, retry, Observable, Subject } from 'rxjs';
 import { LoadingService } from './myLoading.service';
 import { environment } from '../../environments/environment.prod';
 import { Inject, Injectable } from '@angular/core';
@@ -15,12 +15,12 @@ interface IProduct {
 })
 //не работает debounceTime, не получается BehaviorSubject задать обощение 
 export class MyProductService {
-  public products: BehaviorSubject <[]> = new BehaviorSubject([]);
+  public products: BehaviorSubject<[]> = new BehaviorSubject([]);
   private urlPath = '/api/product';
-  
+
   public productsObserver = ajax(environment.ENV.localhost + this.urlPath).pipe(
     map((res) => {
-      if(res.status){
+      if (res.status) {
         this.LoadingService.setStatusLoading = 'stop'
         return res.response
       }
@@ -34,7 +34,7 @@ export class MyProductService {
 
   reqGet = async () => {
     this.LoadingService.setStatusLoading = 'start'
-    this.productsObserver.subscribe((res:any) => {
+    this.productsObserver.subscribe((res: any) => {
       this.products.next(res.results)
     })
   }

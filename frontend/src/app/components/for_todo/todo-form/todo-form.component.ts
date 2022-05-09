@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { ITodo, IValuesNewTodo } from '../../../interfaces/ITodo';
+import { ITodo, IValuesNewTodo } from '../../../models/ITodo';
 import { MyTodosService } from '../../../servises/myTodos.service';
 import { NgForm } from '@angular/forms';
 import { Component, Inject, Output, EventEmitter, Input, SimpleChanges } from '@angular/core';

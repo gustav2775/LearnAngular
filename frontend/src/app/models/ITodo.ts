@@ -1,5 +1,5 @@
-export interface ITodo {
-    id: number|null,
+export interface ITodo extends IValuesNewTodo{
+    id: number|null|string,
     title: string,
     description: string,
     date?: Date,

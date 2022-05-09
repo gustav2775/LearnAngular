@@ -1,5 +1,13 @@
-<ng-container *ngIf="!products_list.length">
-  <div class="empty">Список продуктов пуст</div>
+<ng-container *ngIf="products_list.value.length; else empty">
+  <ng-container *ngFor="let product of products_list | async">
+    <app-product-card [product]="product"></app-product-card>
+  </ng-container>
+  <button (click)="getProducts()"> request </button>
 </ng-container>
-<ng-content></ng-content>
+<ng-template #empty>
+  <div class="empty">Список продуктов пуст</div>
+</ng-template>
+
+
+
 

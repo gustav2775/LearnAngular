@@ -1,4 +1,4 @@
-import { IUser } from '../../../interfaces/IUser';
+import { IUser } from '../../../models/IUser';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { UsersService } from '../../../servises/myUsers.service';

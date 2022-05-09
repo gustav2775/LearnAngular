@@ -27,7 +27,7 @@ export class LoginFormComponent {
   public auth: boolean = false;
   public errMessage: string = ''
   constructor(
-    @Inject('loginService') private loginService: LoginService,
+    private loginService: LoginService,
     public fb: FormBuilder,
     public dialogRef: MatDialogRef<ModalAuthComponent>
   ) {
