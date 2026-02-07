@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  padding: 16px;
+  min-height: 25px;
+  border: 1px solid rosybrown;
+  z-index: 1;
+  gap: 4px;
+
+  &.detection {
+    border-color: forestgreen;
+    border-width: 2px;
+  }
+}
+
+.active.count {
+  color: red;
+}
+
+.content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 8px;
+  overflow: auto;
+}

@@ -1,0 +1,37 @@
+@padding: 8px;
+
+:host {
+  display: block;
+  height: 28px;
+
+  input {
+    height: 100%;
+    width: calc(100% - @padding*2);
+    color: var(--shell-text-color);
+    background-color: var(--ui-input-bg-color);
+
+    border: 1px solid var(--ui-input-default);
+    border-radius: 30px;
+    outline: none;
+    padding: 0 @padding;
+    margin: 0;
+  }
+}
+
+:host(.--dirty) {
+  input {
+    border-color: var(--ui-input-dirty);
+  }
+}
+
+:host(.--invalid) {
+  input {
+    border-color: var(--ui-input-invalid);
+  }
+}
+
+:host(.--focused) {
+  input {
+    border-width: 2px;
+  }
+}

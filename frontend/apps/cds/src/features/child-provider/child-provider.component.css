@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  width: auto;
+  padding: 16px;
+  min-height: 25px;
+  border: 1px solid rosybrown;
+  z-index: 1;
+
+  &.detection {
+    border-color: forestgreen;
+    border-width: 2px;
+  }
+}

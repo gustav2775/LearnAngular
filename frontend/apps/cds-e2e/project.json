@@ -1,0 +1,10 @@
+{
+  "name": "cds-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/cds-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["cds"],
+  "// targets": "to see all targets run: nx show project cds-e2e --web",
+  "targets": {}
+}

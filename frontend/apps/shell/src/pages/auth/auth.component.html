@@ -1,0 +1,27 @@
+<h2>Авторизация</h2>
+
+<form class="form-auth" (ngSubmit)="onSubmit($event)" [formGroup]="authForm">
+  <section class="form-auth_controls">
+    <ui-input-text formControlName="email" type="email" [placeholder]="'Email'"/>
+
+    <ui-input-text formControlName="username" type="username" [placeholder]="'Username'" />
+
+    <ui-input-text formControlName="password" type="password" [placeholder]="'Password'" />
+
+    <ui-input-checkbox
+      formControlName="isRegistry"
+      [id]="'isRegistry'"
+      [label]="'Регистрация нового пользователя'"
+      (ngModelChange)=""
+    />
+  </section>
+
+  <!-- <ui-input-select formControlName="select" [id]="'numbers'" [list]="['1','2']"></ui-input-select> -->
+
+  <section class="form-auth_actions">
+    <button (click)="onCancel()">Отмена</button>
+    <button type="submit" [disabled]="!authForm.valid">
+      {{ authForm.get('isRegistry')?.value ? 'Регистрация' : 'Войти' }}
+    </button>
+  </section>
+</form>

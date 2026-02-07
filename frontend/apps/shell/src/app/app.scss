@@ -1,0 +1,217 @@
+:host {
+  height: 100%;
+
+  display: grid;
+  grid-template-areas:
+    "header header header"
+    "navigation content aside"
+    "footer footer footer";
+  grid-auto-rows: auto 1fr auto;
+  grid-auto-columns: auto 1fr auto;
+  position: initial;
+}
+
+.header {
+  grid-area: header;
+
+  min-height: 36px;
+  padding-inline: 16px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  border-bottom: 1px solid var(--ui-border-color);
+  background-color: var(--ui-bg-toolbar-color);
+
+  transition: all 1s ease-in;
+}
+
+.menu {
+  grid-area: navigation;
+
+  width: min-content;
+  min-width: 30px;
+  padding: 8px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  background-color: var(--ui-bg-toolbar-color);
+  border-right: 1px solid var(--ui-border-color);
+
+  animation: menuCollapse 1s forwards;
+  transition: background-color 1s ease-in;
+
+  &.show {
+    animation: menuExpand 1s forwards;
+  }
+
+  &__navigation {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    a {
+      padding: 4px 4px;
+
+      position: relative;
+      display: flex;
+      overflow: initial;
+
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 16px;
+
+      color: var(--ui-link-color);
+      text-decoration: none;
+      border-radius: 8px;
+
+      background: rgba(255, 255, 255, 0.05);
+
+      transition: all 1s ease-in;
+
+      &:hover {
+        background:
+          linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 16%, rgba(255, 255, 255, 0.3) 53%, rgba(255, 255, 255, 0.2) 84%, rgba(255, 255, 255, 0.2) 100%);
+
+        &.active {
+          background:
+            linear-gradient(90deg, rgba(211, 221, 68, 0.7) 0%, rgba(211, 221, 68, 0.3) 2%, transparent 8%),
+            linear-gradient(0deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.2) 16%, rgba(255, 255, 255, 0.3) 53%, rgba(255, 255, 255, 0.2) 84%, rgba(255, 255, 255, 0.2) 100%);
+        }
+      }
+
+      // after hover item
+      &:hover + a {
+        background: linear-gradient(0deg,rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2) 100%);
+
+        &.active {
+          background:
+            linear-gradient(90deg, rgba(211, 221, 68, 0.7) 0%, rgba(211, 221, 68, 0.3) 2%, transparent 8%),
+            linear-gradient(0deg,rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.2) 100%);
+        }
+      }
+
+      // before hover item
+      &:has(+ :hover) {
+        background: linear-gradient(0deg,rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 100%);
+
+        &.active {
+          background:
+            linear-gradient(90deg, rgba(211, 221, 68, 0.7) 0%, rgba(211, 221, 68, 0.3) 2%, transparent 8%),
+            linear-gradient(0deg,rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.05) 100%);
+        }
+      }
+
+      &.active {
+        background: linear-gradient(90deg, rgba(211, 221, 68, 0.7) 0%, rgba(211, 221, 68, 0.3) 2%, rgba(255, 255, 255, 0.05) 8%);
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 3px;
+          height: 14px;
+
+          border-top-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+
+          left: -9px;
+          top: 5px;
+
+          background-color: #d3dd44;
+        }
+
+        span {
+          color: var(--ui-link-active-color);
+        }
+      }
+
+      svg {
+        width: 16px;
+        height: 16px;
+
+        padding-inline: 4px;
+      }
+    }
+  }
+
+  &__settings {
+    padding-top: 4px;
+
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4px;
+
+    border-top: 1px solid var(--ui-border-color);
+  }
+
+  &__setting_btn,
+  &__toggle_btn {
+    width: 28px;
+    height: 28px;
+
+    display: inline-flex;
+
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+  }
+
+  &__setting_btn {
+    padding: 2px;
+  }
+}
+
+.content {
+  grid-area: content;
+
+  padding: 8px;
+  overflow: hidden;
+
+  background-color: var(--ui-bg-color);
+
+  transition: all 1s ease-in;
+}
+
+.aside {
+  grid-area: aside;
+
+  border-right: 1px solid var(--ui-border-color);
+}
+
+.footer {
+  grid-area: footer;
+}
+
+
+@keyframes menuExpand {
+  0% {
+    width: min-content;
+  }
+
+  1% {
+    min-width: 30px;
+  }
+
+  100% {
+    min-width: 200px;
+  }
+}
+
+@keyframes menuCollapse {
+  0% {
+    min-width: 200px;
+  }
+
+  99% {
+    min-width: 30px;
+  }
+
+  100% {
+    width: min-content;
+
+  }
+}

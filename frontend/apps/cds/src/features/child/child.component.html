@@ -1,0 +1,9 @@
+<button class="count" [class.active]="isActive()" (click)="changeLeftTree($event)">
+  №{{runChangeDetection}} : {{ trigger() }}
+</button>
+
+<div class="content">
+  <ng-content select='[left]'></ng-content>
+  <ng-content select='[right]'></ng-content>
+</div>
+

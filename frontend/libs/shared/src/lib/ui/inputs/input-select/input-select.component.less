@@ -1,0 +1,43 @@
+@padding: 8px;
+
+:host {
+  display: block;
+  height: 28px;
+  width: max(100px, 100%);
+  outline: none;
+
+  select {
+    height: 100%;
+    width: calc(100% - @padding*2);
+    color: var(--shell-text-color);
+    background-color: var(--ui-input-bg-color);
+
+    border: 1px solid var(--ui-input-default);
+    border-radius: 30px;
+    outline: none;
+    padding: 0 @padding;
+    margin: 0;
+  }
+
+  option {
+    background-color: var(--ui-input-bg-color);
+  }
+}
+
+:host(.--dirty) {
+  select {
+    border-color: var(--ui-input-dirty);
+  }
+}
+
+:host(.--invalid) {
+  select {
+    border-color: var(--ui-input-invalid);
+  }
+}
+
+:host(.--focused) {
+  select {
+    border-width: 2px;
+  }
+}

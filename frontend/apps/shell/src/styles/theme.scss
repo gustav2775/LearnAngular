@@ -1,0 +1,64 @@
+:root {
+  --ui-overflow-wrap: 1
+
+  //main colors
+  --ui-link-color: #000;
+  --ui-link-hover-color: #b1b97b;
+  --ui-link-active-color: #9db600;
+
+  --ui-text-color: #000;
+  --ui-text-gray-color: #2c2c2c;
+
+
+  --ui-bg-color: #f0f0f0d7;
+  --ui-bg-light-color: #fff;
+  --ui-bg-toolbar-color: #72acd4;
+  --ui-bg-button-color: #e0e0e0;
+
+  --ui-border-color: rgba(255, 255, 255, 0.2);
+
+  --ui-input-invalid: #b92020;
+  --ui-input-default: #575757e0;
+  --ui-input-dirty: #b1b97b;
+  --ui-input-focused: #4295da;
+  --ui-input-bg-color: #fff;
+  --ui-input-apply: #9db600;
+}
+
+
+[data-theme="dark"] {
+  //main colors
+  --ui-link-color: #fff;
+  --ui-link-hover-color: #b1b97b;
+  --ui-link-active-color: #e3f18e;
+
+  --ui-text-color: #fff;
+  --ui-text-gray-color: #3b3b3b;
+
+  --ui-bg-color: #1a1a1a;
+  --ui-bg-light-color: #444343;
+  --ui-bg-toolbar-color: #111e26;
+  --ui-bg-button-color: #333232;
+
+  --ui-border-color: #353333;
+
+  --ui-input-invalid: #b43535;
+  --ui-input-default: #dfdddde0;
+  --ui-input-dirty: #9db600;
+  --ui-input-focused: #62a3d8;
+  --ui-input-bg-color: #5f5d5d;
+  --ui-input-apply: #9db600;
+}
+
+@property --border {
+  syntax: '*';
+  inherits: false;
+  initial-value: 1px solid var(--ui-border-color);
+}
+
+@property --red {
+  syntax: '*';
+  inherits: false;
+  initial-value: red;
+}
+

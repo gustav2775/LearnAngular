@@ -1,8 +1,0 @@
-.loader-wrap{
-    height: 4px;
-    background: rgba(79, 191, 193, 1);;
-    & ::ng-deep .mat-progress-bar-fill::after {
-        border-radius: 3px;
-        background-color:#59B039;
-      }
-}

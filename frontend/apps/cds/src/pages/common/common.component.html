@@ -1,0 +1,41 @@
+<div [class.detection]="isDetection()" id="container">
+  <div>
+    <h1>Change Detection Strategy</h1>
+    <p>{{ runChangeDetection }}</p>
+  </div>
+
+  <child-provider></child-provider>
+
+  <div>
+    <button (click)="changeLeftTree()">Left</button>
+    <button (click)="changeRightTree()">Right</button>
+  </div>
+
+  <app-child>
+    <app-child left [number]="1">
+      <app-child left [number]="2" [trigger]="left()">
+        <app-child left [number]="4"></app-child>
+        <app-child right [number]="5"></app-child>
+      </app-child>
+
+      <app-child right [number]="3">
+        <app-child left [number]="6"></app-child>
+        <app-child right [number]="7"></app-child>
+      </app-child>
+    </app-child>
+
+    <app-child right [number]="8" [trigger]="right()">
+      <app-child left [number]="9">
+        <app-child left [number]="11"></app-child>
+        <app-child right [number]="12"></app-child>
+      </app-child>
+
+      <app-child right [number]="10">
+        <app-child left [number]="13"></app-child>
+        <app-child right [number]="14"></app-child>
+      </app-child>
+    </app-child>
+  </app-child>
+
+  <router-outlet></router-outlet>
+</div>

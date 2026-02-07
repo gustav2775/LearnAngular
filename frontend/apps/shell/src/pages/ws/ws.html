@@ -1,0 +1,18 @@
+<h2>Web Sockets</h2>
+
+<form class="form" [formGroup]="form" (submit)="onSubmit($event)">
+  <input formControlName="message" type="text">
+  <button type="submit">Отправить</button>
+</form>
+
+<section class="messages">
+  @for (item of messages; track item.ts) {
+    <ul>
+      <li>
+        <p> <span>{{ $index }} _ </span>{{ item.message }}</p>
+      </li>
+    </ul>
+  } @empty {
+    <p>Сообщений нет</p>
+  }
+</section>

@@ -1,0 +1,23 @@
+<h2>Long pulling</h2>
+
+<form [formGroup]="form" (submit)="onSubmit($event)">
+  <ui-input-text
+    formControlName="message"
+    name="message"
+    required
+  />
+  <!-- <textarea inputRef formControlName="message" name="message" required></textarea> -->
+  <button type="submit">Отправить</button>
+</form>
+
+<section>
+  @for (item of messages; track item?.ts) {
+    <ul>
+      <li>
+        <p>{{ item.message }}</p>
+      </li>
+    </ul>
+  } @empty {
+    <p>Сообщений нет</p>
+  }
+</section>

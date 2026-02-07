@@ -1,0 +1,18 @@
+<h2>SSE</h2>
+
+<form [formGroup]="form" (submit)="onSubmit($event)">
+  <input formControlName="message" type="text">
+  <button type="submit">Отправить</button>
+</form>
+
+<section>
+  @for (item of messages; track item.ts) {
+    <ul>
+      <li>
+        <p>{{ item.message }}</p>
+      </li>
+    </ul>
+  } @empty {
+    <p>Сообщений нет</p>
+  }
+</section>

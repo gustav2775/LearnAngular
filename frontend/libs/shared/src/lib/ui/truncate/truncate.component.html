@@ -1,0 +1,14 @@
+<span
+  #outlet
+  class="text-clamp"
+  [sdkHint]="computedContent()"
+  (mouseenter)="update()"
+>
+  <ng-content></ng-content>
+</span>
+
+<ng-template #hint>
+  <div style="overflow-wrap: break-word">
+    {{ outlet.textContent }}
+  </div>
+</ng-template>

@@ -1,9 +1,0 @@
-<h2>Render on array and interpolation</h2>
-
-<h3>NgFor</h3>
-<ul>
-  <li [attr.data-id]="item.id" *ngFor="let item of list"> {{ item.title }} </li>
-</ul>
-
-<h3>innerHTML on forEach</h3>
-<ul [innerHTML]="generateHtml()"></ul>
